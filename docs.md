@@ -1,6 +1,6 @@
 # Učila — Build Prompt for Copilot
 
-Build a Hugo website: **Učila**, an open-source library of DIY teaching aids ("didactic accessories") for teachers. Each entry is a makeable object with a description, classroom use, materials, fabrication files and step-by-step build instructions. Think Instructables, but curated, clean and made for schools.
+Build a Hugo website: **MAKE&LEARN**, an open-source library of DIY teaching aids ("didactic accessories") for teachers. Each entry is a makeable object with a description, classroom use, materials, fabrication files and step-by-step build instructions. Think Instructables, but curated, clean and made for schools.
 
 Tone of all copy: **warm, encouraging, practical, teacher-to-teacher, never corporate.**
 
