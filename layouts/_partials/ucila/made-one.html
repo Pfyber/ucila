@@ -1,0 +1,20 @@
+{{- /* Invitation to share a build or report a problem via GitHub issue forms. */ -}}
+{{- $repo := site.Params.repo -}}
+{{- $share := printf "%s/issues/new?%s" $repo (querify "template" "i-built-this.yml" "aid" .Permalink) -}}
+{{- $fix := printf "%s/issues/new?%s" $repo (querify "template" "error-in-instructions.yml" "aid" .Permalink) -}}
+<aside class="u-made-one not-prose" aria-labelledby="made-one-title">
+  <div>
+    <h2 id="made-one-title">{{ i18n "made_one" }}</h2>
+    <p>{{ i18n "made_one_text" }}</p>
+  </div>
+  <div class="u-actions">
+    <a class="u-btn u-btn--primary" href="{{ $share | safeURL }}" rel="noopener">
+      {{- partial "utils/icon.html" (dict "name" "camera" "attributes" `height=18 aria-hidden="true"`) -}}
+      <span>{{ i18n "share_photo" }}</span>
+    </a>
+    <a class="u-btn u-btn--ghost" href="{{ $fix | safeURL }}" rel="noopener">
+      {{- partial "utils/icon.html" (dict "name" "pencil" "attributes" `height=18 aria-hidden="true"`) -}}
+      <span>{{ i18n "suggest_fix" }}</span>
+    </a>
+  </div>
+</aside>

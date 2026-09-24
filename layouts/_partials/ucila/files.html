@@ -1,0 +1,49 @@
+{{- /*
+  Lists every downloadable file in the bundle (everything except photos).
+  Resources are shared by all translations; fallback pages borrow them from
+  the Slovenian bundle.
+*/ -}}
+{{- $src := partial "ucila/source.html" . -}}
+{{- $photos := slice "jpg" "jpeg" "png" "webp" "gif" "avif" -}}
+{{- $icons := dict
+  "svg" "scissors" "dxf" "scissors" "ai" "scissors" "lbrn" "scissors" "lbrn2" "scissors"
+  "stl" "cube" "3mf" "cube" "obj" "cube" "step" "cube" "stp" "cube" "f3d" "cube" "scad" "cube"
+  "gcode" "cog" "nc" "cog" "tap" "cog"
+  "pdf" "document-text" "zip" "archive"
+  "py" "code" "ino" "code" "c" "code" "cpp" "code" "js" "code" "json" "code"
+-}}
+{{- $files := slice -}}
+{{- $zip := false -}}
+{{- range $src.Resources -}}
+  {{- if eq .ResourceType "page" }}{{ continue }}{{ end -}}
+  {{- $ext := path.Ext .Name | strings.TrimPrefix "." | lower -}}
+  {{- if in $photos $ext }}{{ continue }}{{ end -}}
+  {{- if and (eq $ext "zip") (not $zip) }}{{ $zip = . }}{{ continue }}{{ end -}}
+  {{- $files = $files | append . -}}
+{{- end -}}
+{{- if or $files $zip -}}
+  <h2 id="files">{{ i18n "files" }}</h2>
+  {{- with $zip -}}
+    <a class="u-btn u-btn--primary u-download-all" href="{{ .RelPermalink }}" download>
+      {{- partial "utils/icon.html" (dict "name" "download" "attributes" `height=20 aria-hidden="true"`) -}}
+      <span>{{ i18n "download_all" }}</span>
+      <span class="u-muted">{{ partial "ucila/filesize.html" . }}</span>
+    </a>
+  {{- end -}}
+  <ul class="u-files not-prose">
+    {{- range $files -}}
+      {{- $ext := path.Ext .Name | strings.TrimPrefix "." | lower -}}
+      <li>
+        <span class="u-files__icon" aria-hidden="true">{{ partial "utils/icon.html" (dict "name" (index $icons $ext | default "document") "attributes" "height=22") }}</span>
+        <span class="u-files__name">
+          <strong>{{ path.Base .Name }}</strong>
+          <span class="u-muted">{{ upper $ext }} · {{ partial "ucila/filesize.html" . }}</span>
+        </span>
+        <a class="u-btn u-btn--ghost" href="{{ .RelPermalink }}" download aria-label="{{ i18n "download" }}: {{ path.Base .Name }}">
+          {{- partial "utils/icon.html" (dict "name" "download" "attributes" `height=18 aria-hidden="true"`) -}}
+          <span>{{ i18n "download" }}</span>
+        </a>
+      </li>
+    {{- end -}}
+  </ul>
+{{- end -}}

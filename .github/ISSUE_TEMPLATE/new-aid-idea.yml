@@ -1,0 +1,35 @@
+name: 💡 Nova ideja za učilo / Nova ideja / New aid idea
+description: Imaš idejo ali že narejeno učilo? Povej nam. / Have an idea or a finished aid? Tell us.
+title: "[Ideja] "
+labels: ["new-aid"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hvala! Ni ti treba znati Gita – opiši idejo, pa ti pomagamo pripraviti stran.
+        Hvala! Ne moraš da znaš Git – opiši ideju, a mi ćemo pomoći.
+        Thanks! No Git needed – describe the idea and we'll help turn it into a page.
+  - type: input
+    id: name
+    attributes:
+      label: Ime učila / Naziv / Name
+    validations:
+      required: true
+  - type: textarea
+    id: lesson
+    attributes:
+      label: Kaj učenci s tem počnejo? / Šta učenici rade? / What do pupils do with it?
+      description: Predmet, starost, kratka dejavnost. / Subject, age, a short activity.
+    validations:
+      required: true
+  - type: dropdown
+    id: machine
+    attributes:
+      label: Izdelava / Izrada / Method
+      multiple: true
+      options: [laser, 3d-print, cnc, hand-tools, electronics]
+  - type: textarea
+    id: files
+    attributes:
+      label: Datoteke in fotografije / Fajlovi i fotografije / Files and photos
+      description: Povleci sem ali prilepi povezavo. / Drag files here or paste a link.

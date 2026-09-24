@@ -1,0 +1,9 @@
+{{- /* Display name for a term: taxonomy (e.g. "age") and key (e.g. "6-9"). */ -}}
+{{- $key := .key -}}
+{{- $label := $key -}}
+{{- if eq .taxonomy "age" -}}
+  {{- $label = printf (i18n "age_years") (replace $key "-" "–") -}}
+{{- else if ne .taxonomy "authors" -}}
+  {{- $label = partial "ucila/label.html" $key -}}
+{{- end -}}
+{{- return $label -}}

@@ -1,0 +1,9 @@
+{{- /* Human-readable size of a resource. */ -}}
+{{- $b := len .Content -}}
+{{- $out := printf "%d B" $b -}}
+{{- if ge $b 1048576 -}}
+  {{- $out = printf "%s MB" (lang.FormatNumber 1 (div (float $b) 1048576)) -}}
+{{- else if ge $b 1024 -}}
+  {{- $out = printf "%s kB" (lang.FormatNumber 0 (div (float $b) 1024)) -}}
+{{- end -}}
+{{- return $out -}}

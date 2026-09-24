@@ -1,0 +1,11 @@
+{{- /* Shown on stand-in pages that display the Slovenian original. */ -}}
+{{- if .Params.fallback -}}
+  {{- $contribute := "" -}}
+  {{- with site.GetPage "/prispevaj" }}{{ $contribute = printf "%s#translations" .RelPermalink }}{{ end -}}
+  <div class="u-notice not-prose" role="note">
+    {{- partial "utils/icon.html" (dict "name" "translate" "attributes" `height=22 aria-hidden="true"`) -}}
+    <p>
+      {{- with $contribute }}<a href="{{ . }}">{{ i18n "not_translated" }}</a>{{ else }}{{ i18n "not_translated" }}{{ end -}}
+    </p>
+  </div>
+{{- end -}}

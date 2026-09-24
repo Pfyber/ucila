@@ -1,0 +1,11 @@
+{{- /* Extends Hextra's footer: licence line and repository link. */ -}}
+<div class="u-footer">
+  <p>{{ i18n "footer_license" }}</p>
+  <p>
+    <a href="{{ site.Params.repo }}" rel="noopener">
+      {{- partial "utils/icon.html" (dict "name" "github" "attributes" `height=16 aria-hidden="true"`) -}}
+      <span>{{ i18n "source_code" }}</span>
+    </a>
+    {{ with site.GetPage "/prispevaj" }}<a href="{{ .RelPermalink }}">{{ i18n "contribute" }}</a>{{ end }}
+  </p>
+</div>

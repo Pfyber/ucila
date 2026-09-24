@@ -1,0 +1,4 @@
+{{- /* Grid of aid cards. Pass a page collection. */ -}}
+<div class="u-grid not-prose" data-card-grid>
+  {{- range . }}{{ partial "ucila/card.html" . }}{{ end -}}
+</div>

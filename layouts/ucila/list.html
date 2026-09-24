@@ -1,0 +1,54 @@
+{{ define "main" }}
+  {{- $pages := .RegularPages.ByDate.Reverse -}}
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" false) }}
+    <main id="content" class="u-page hx:w-full hx:min-w-0 hx:px-6 hx:pt-8 hx:pb-12 hx:md:px-12">
+      <header class="u-section-head">
+        <h1>{{ .Title }}</h1>
+        <p class="u-lead">{{ i18n "catalog_intro" }}</p>
+      </header>
+      {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
+
+      <section class="u-filters" aria-label="{{ i18n "filters" }}" data-filters
+        data-count-template="{{ i18n "results_count" }}">
+        {{- $order := dict "difficulty" (slice "easy" "medium" "hard") -}}
+        {{- range $tax := slice "subject" "age" "machine" "difficulty" -}}
+          {{- with index site.Taxonomies $tax -}}
+            {{- $keys := slice -}}
+            {{- range $k, $_ := . }}{{ $keys = $keys | append $k }}{{ end -}}
+            {{- with index $order $tax }}{{ $keys = intersect . $keys }}{{ end -}}
+            {{- if eq $tax "age" }}{{ $s := slice }}{{ range $keys }}{{ $s = $s | append (dict "k" . "n" (int (index (split . "-") 0))) }}{{ end }}{{ $keys = slice }}{{ range sort $s "n" }}{{ $keys = $keys | append .k }}{{ end }}{{ end -}}
+            <fieldset class="u-filter-group">
+              <legend>{{ i18n $tax }}</legend>
+              <div class="u-chips">
+                {{- range $keys -}}
+                  <button type="button" class="u-chip" aria-pressed="false" data-group="{{ $tax }}" data-value="{{ . }}">
+                    {{- partial "ucila/term-label.html" (dict "taxonomy" $tax "key" .) -}}
+                  </button>
+                {{- end -}}
+              </div>
+            </fieldset>
+          {{- end -}}
+        {{- end -}}
+        <div class="u-filter-bar">
+          <p class="u-muted" aria-live="polite" data-count></p>
+          <button type="button" class="u-btn u-btn--ghost" data-clear hidden>
+            {{- partial "utils/icon.html" (dict "name" "x" "attributes" `height=16 aria-hidden="true"`) -}}
+            <span>{{ i18n "clear_filters" }}</span>
+          </button>
+        </div>
+      </section>
+
+      <noscript><style>[data-filters]{display:none}</style></noscript>
+
+      {{ partial "ucila/card-grid.html" $pages }}
+      <p class="u-empty" data-empty {{ if $pages }}hidden{{ end }}>
+        {{ i18n "no_results" }}
+        {{ with site.GetPage "/prispevaj" }}<a href="{{ .RelPermalink }}">{{ i18n "hero_cta_contribute" }} →</a>{{ end }}
+      </p>
+    </main>
+  </div>
+  {{- with resources.Get "js/filters.js" | js.Build (dict "minify" true "target" "es2018") | fingerprint -}}
+    <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{- end -}}
+{{ end }}

@@ -1,0 +1,47 @@
+{{- /*
+  Missing translations: for every aid bundle that has index.sl.md but no
+  index.<lang>.md, add a stand-in page to the current language built from the
+  Slovenian text. Layouts detect it via .Params.fallback and borrow the files
+  from the Slovenian bundle, so nothing is duplicated.
+*/ -}}
+{{- .EnableAllLanguages -}}
+{{- $lang := .Site.Language.Name -}}
+{{- $default := "sl" -}}
+{{- if ne $lang $default -}}
+  {{- $dir := "content/ucila" -}}
+  {{- range os.ReadDir $dir -}}
+    {{- if .IsDir -}}
+      {{- $slug := .Name -}}
+      {{- $src := printf "%s/%s/index.%s.md" $dir $slug $default -}}
+      {{- $own := printf "%s/%s/index.%s.md" $dir $slug $lang -}}
+      {{- if and (fileExists $src) (not (fileExists $own)) -}}
+        {{- $raw := os.ReadFile $src | replaceRE "\r\n" "\n" -}}
+        {{- $m := findRESubmatch `(?s)\A---\n(.*?)\n---\n?(.*)\z` $raw 1 -}}
+        {{- with $m -}}
+          {{- $fm := transform.Unmarshal (dict "format" "yaml") (index (index . 0) 1) -}}
+          {{- $body := index (index . 0) 2 -}}
+          {{- if not $fm.draft -}}
+            {{- $params := dict "fallback" $default "fallback_path" (printf "/ucila/%s" $slug) -}}
+            {{- range $k, $v := $fm -}}
+              {{- if not (in (slice "title" "date" "summary" "draft") $k) -}}
+                {{- $params = merge $params (dict $k $v) -}}
+              {{- end -}}
+            {{- end -}}
+            {{- $page := dict
+              "kind" "page"
+              "path" $slug
+              "title" $fm.title
+              "summary" ($fm.summary | default "")
+              "params" $params
+              "content" (dict "mediaType" "text/markdown" "value" $body)
+            -}}
+            {{- with $fm.date -}}
+              {{- $page = merge $page (dict "dates" (dict "date" (time.AsTime .))) -}}
+            {{- end -}}
+            {{- $.AddPage $page -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

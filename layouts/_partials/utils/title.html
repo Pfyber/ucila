@@ -1,0 +1,16 @@
+{{- /* Extends Hextra's utils/title: taxonomy and term pages get translated names. */ -}}
+{{- $title := "" -}}
+{{- if eq .Kind "term" -}}
+  {{- $title = partial "ucila/term-label.html" (dict "taxonomy" .Data.Plural "key" .Data.Term) -}}
+{{- else if eq .Kind "taxonomy" -}}
+  {{- $title = i18n .Data.Plural | default .Title -}}
+{{- else if .LinkTitle -}}
+  {{- $title = .LinkTitle -}}
+{{- else if .Title -}}
+  {{- $title = .Title -}}
+{{- else if and .IsSection .File -}}
+  {{- $title = path.Base .File.Dir | humanize | title -}}
+{{- else if and .IsPage .File -}}
+  {{- $title = .File.BaseFileName | humanize | title -}}
+{{- end -}}
+{{- return $title -}}

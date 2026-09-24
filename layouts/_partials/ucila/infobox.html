@@ -1,0 +1,35 @@
+{{- /* Key facts about an aid. */ -}}
+{{- $p := . -}}
+<dl class="u-info not-prose">
+  {{- range $tax := slice "age" "subject" "machine" "difficulty" -}}
+    {{- with index $p.Params $tax -}}
+      {{- $keys := . -}}
+      {{- if not (reflect.IsSlice $keys) }}{{ $keys = slice $keys }}{{ end -}}
+      <div>
+        <dt>{{ i18n $tax }}</dt>
+        <dd>
+          {{- range $i, $k := $keys -}}
+            {{- if $i }}, {{ end -}}
+            {{- $label := partial "ucila/term-label.html" (dict "taxonomy" $tax "key" $k) -}}
+            {{- with partial "ucila/term-url.html" (dict "taxonomy" $tax "key" $k) }}<a href="{{ . }}">{{ $label }}</a>{{ else }}{{ $label }}{{ end -}}
+          {{- end -}}
+        </dd>
+      </div>
+    {{- end -}}
+  {{- end -}}
+  {{- with $p.Params.time }}<div><dt>{{ i18n "time" }}</dt><dd>{{ . }}</dd></div>{{ end -}}
+  {{- with $p.Params.cost }}<div><dt>{{ i18n "cost" }}</dt><dd>{{ . }}</dd></div>{{ end -}}
+  {{- with $p.Params.license }}<div><dt>{{ i18n "license" }}</dt><dd>{{ . }}</dd></div>{{ end -}}
+  {{- with $p.Params.authors -}}
+    <div>
+      <dt>{{ i18n "authors" }}</dt>
+      <dd>
+        {{- range $i, $a := . -}}
+          {{- if $i }}, {{ end -}}
+          {{- with partial "ucila/term-url.html" (dict "taxonomy" "authors" "key" $a) }}<a href="{{ . }}">{{ $a }}</a>{{ else }}{{ $a }}{{ end -}}
+        {{- end -}}
+      </dd>
+    </div>
+  {{- end -}}
+  {{- with $p.Params.school }}<div><dt>{{ i18n "school" }}</dt><dd>{{ . }}</dd></div>{{ end -}}
+</dl>

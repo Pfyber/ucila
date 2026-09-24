@@ -1,0 +1,12 @@
+{{- /* Returns the page that owns the bundle files. A fallback page (see
+  content/ucila/_content.gotmpl) borrows them from the Slovenian original. */ -}}
+{{- $page := . -}}
+{{- with .Params.fallback -}}
+  {{- $lang := . -}}
+  {{- range hugo.Sites -}}
+    {{- if eq .Language.Name $lang -}}
+      {{- with .GetPage $page.Params.fallback_path }}{{ $page = . }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $page -}}

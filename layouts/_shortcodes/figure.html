@@ -1,0 +1,14 @@
+{{- /*
+  Photo from the aid's folder, resized to webp. Alt text is required.
+
+  {{< figure src="step-1.jpg" alt="What the photo shows" caption="Optional caption" >}}
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $alt }}{{ errorf "%s: figure %q needs alt text" .Position $src }}{{ end -}}
+{{- $owner := partial "ucila/source.html" .Page -}}
+{{- with or ($owner.Resources.Get $src) (resources.Get $src) -}}
+<figure class="u-figure">{{ partial "ucila/image.html" (dict "img" . "alt" $alt "widths" (slice 480 800 1200) "sizes" "(min-width: 72rem) 60rem, 100vw") }}{{ with $.Get "caption" }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}</figure>
+{{- else -}}
+  {{- errorf "%s: figure image %q not found" .Position $src -}}
+{{- end -}}

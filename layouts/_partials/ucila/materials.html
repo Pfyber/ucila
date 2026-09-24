@@ -1,0 +1,13 @@
+{{- /* Materials table from front matter. */ -}}
+{{- $rows := where (.Params.materials | default slice) "name" "!=" "" -}}
+{{- with $rows -}}
+  <h2 id="materials">{{ i18n "materials" }}</h2>
+  <div class="u-table-wrap">
+    <table class="u-materials">
+      <thead><tr><th scope="col">{{ i18n "item" }}</th><th scope="col">{{ i18n "quantity" }}</th></tr></thead>
+      <tbody>
+        {{- range . }}<tr><td>{{ .name | markdownify }}</td><td>{{ .qty }}</td></tr>{{ end -}}
+      </tbody>
+    </table>
+  </div>
+{{- end -}}

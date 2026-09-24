@@ -1,0 +1,22 @@
+name: 🛠 Napaka v navodilih / Greška u uputstvu / Error in instructions
+description: Nekaj ne drži, manjka ali se ne da izdelati. / Something is wrong, missing or can't be made.
+title: "[Popravek] "
+labels: ["fix"]
+body:
+  - type: input
+    id: aid
+    attributes:
+      label: Učilo (povezava) / Učilo (link) / Aid (link)
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Kaj je narobe? / Šta nije u redu? / What's wrong?
+      description: Korak, datoteka ali odstavek. / Which step, file or paragraph.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Predlog popravka / Predlog ispravke / Suggested fix

@@ -1,0 +1,22 @@
+{{ define "main" }}
+  {{- $tax := .Data.Plural -}}
+  <div class="hx:mx-auto hx:flex hextra-max-page-width">
+    {{ partial "sidebar.html" (dict "context" . "disableSidebar" true "displayPlaceholder" false) }}
+    <main id="content" class="u-page hx:w-full hx:min-w-0 hx:px-6 hx:pt-8 hx:pb-12 hx:md:px-12">
+      <header class="u-section-head">
+        <h1>{{ partial "utils/title.html" . }}</h1>
+      </header>
+      {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
+      <ul class="u-chips u-chips--big not-prose">
+        {{- range .Data.Terms.Alphabetical -}}
+          <li>
+            <a class="u-chip" href="{{ .Page.RelPermalink }}">
+              {{- partial "utils/title.html" .Page -}}
+              <span class="u-chip__count">{{ .Count }}</span>
+            </a>
+          </li>
+        {{- end -}}
+      </ul>
+    </main>
+  </div>
+{{ end }}

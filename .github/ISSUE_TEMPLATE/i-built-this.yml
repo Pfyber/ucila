@@ -1,0 +1,30 @@
+name: 📸 Izdelal/a sem to / Napravio/la sam ovo / I built this
+description: Pokaži svojo izdelavo in kako je šlo v razredu. / Show your build and how it went in class.
+title: "[Izdelava] "
+labels: ["built-this"]
+body:
+  - type: input
+    id: aid
+    attributes:
+      label: Učilo (povezava) / Učilo (link) / Aid (link)
+    validations:
+      required: true
+  - type: textarea
+    id: photos
+    attributes:
+      label: Fotografije / Photos
+      description: Povleci fotografije sem. Brez obrazov učencev, prosimo. / Drag photos here. Please no pupils' faces.
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: Kako je šlo? / Kako je prošlo? / How did it go?
+      description: Kaj je delovalo, kaj bi spremenil/a? / What worked, what would you change?
+  - type: checkboxes
+    id: license
+    attributes:
+      label: Licenca / License
+      options:
+        - label: Fotografije lahko objavite pod CC BY-SA 4.0. / Photos may be published under CC BY-SA 4.0.
+          required: true

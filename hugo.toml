@@ -1,0 +1,140 @@
+baseURL = "https://pfyber.github.io/ucila/"
+title = "Učila"
+enableRobotsTXT = true
+enableGitInfo = false
+
+defaultContentLanguage = "sl"
+defaultContentLanguageInSubdir = false
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.158.0"
+  [[module.imports]]
+    path = "github.com/imfing/hextra"
+
+# Hugo ≥ 0.158 renamed languageCode → locale and languageName → label.
+[languages.sl]
+  locale = "sl-SI"
+  label = "Slovenščina"
+  title = "Učila — odprta knjižnica učnih pripomočkov"
+  weight = 1
+
+[languages.sr]
+  locale = "sr-Latn"
+  label = "Srpski"
+  title = "Učila — otvorena biblioteka nastavnih sredstava"
+  weight = 2
+
+[languages.en]
+  locale = "en"
+  label = "English"
+  title = "Učila — open library of DIY teaching aids"
+  weight = 3
+
+[taxonomies]
+  subject = "subject"
+  age = "age"
+  machine = "machine"
+  difficulty = "difficulty"
+  authors = "authors"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    noClasses = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[imaging]
+  resampleFilter = "Lanczos"
+  [imaging.webp]
+    quality = 78
+  [imaging.jpeg]
+    quality = 80
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html"]
+
+[menus]
+  [[menus.main]]
+    identifier = "catalog"
+    name = "Catalog"
+    pageRef = "/ucila"
+    weight = 1
+  [[menus.main]]
+    identifier = "contribute"
+    name = "Contribute"
+    pageRef = "/prispevaj"
+    weight = 2
+  [[menus.main]]
+    name = "Search"
+    weight = 3
+    [menus.main.params]
+      type = "search"
+  [[menus.main]]
+    identifier = "github"
+    name = "GitHub"
+    url = "https://github.com/Pfyber/ucila"
+    weight = 4
+    [menus.main.params]
+      icon = "github"
+  [[menus.main]]
+    name = "Language"
+    weight = 5
+    [menus.main.params]
+      type = "language-switch"
+      label = true
+  [[menus.main]]
+    name = "Theme"
+    weight = 6
+    [menus.main.params]
+      type = "theme-toggle"
+
+[params]
+  brand = "Učila"
+  description = "Open library of DIY teaching aids: plans, files and step-by-step guides."
+  repo = "https://github.com/Pfyber/ucila"
+  displayUpdatedDate = false
+
+  [params.navbar]
+    displayTitle = true
+    displayLogo = true
+    width = "wide"
+    [params.navbar.logo]
+      path = "images/logo.svg"
+      dark = "images/logo-dark.svg"
+      width = 32
+      height = 32
+
+  [params.page]
+    width = "wide"
+
+  [params.theme]
+    default = "system"
+    displayToggle = true
+
+  [params.footer]
+    enable = true
+    displayCopyright = false
+    displayPoweredBy = false
+    width = "wide"
+
+  [params.search]
+    enable = true
+    type = "flexsearch"
+    [params.search.flexsearch]
+      index = "content"
+      tokenize = "forward"
+
+  [params.editURL]
+    enable = false
+
+  [params.highlight.copy]
+    enable = true
+    display = "hover"

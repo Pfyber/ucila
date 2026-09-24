@@ -1,0 +1,5 @@
+{{- /* URL of a term page in the current language. */ -}}
+{{- $url := "" -}}
+{{- $slug := .key | lower | replaceRE `\s+` "-" -}}
+{{- with site.GetPage (printf "/%s/%s" .taxonomy $slug) }}{{ $url = .RelPermalink }}{{ end -}}
+{{- return $url -}}

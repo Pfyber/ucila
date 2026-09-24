@@ -1,0 +1,37 @@
+{{- /*
+  Responsive webp <img> from a bundle image. Output is a single line so it is
+  safe inside Markdown (indented lines would turn into code blocks).
+  dict: img (resource), alt, widths (slice), sizes, ratio ("4:3" or ""), eager (bool), class
+*/ -}}
+{{- $img := .img -}}
+{{- $widths := .widths | default (slice 480 800 1200) -}}
+{{- $attrs := slice (printf `alt="%s"` (.alt | htmlEscape)) -}}
+{{- with .class }}{{ $attrs = $attrs | append (printf `class="%s"` .) }}{{ end -}}
+{{- if .eager }}{{ $attrs = $attrs | append `fetchpriority="high"` }}{{ else }}{{ $attrs = $attrs | append `loading="lazy"` }}{{ end -}}
+{{- $attrs = $attrs | append `decoding="async"` -}}
+{{- if eq $img.MediaType.SubType "svg" -}}
+  {{- printf `<img src="%s" %s>` $img.RelPermalink (delimit $attrs " ") | safeHTML -}}
+{{- else -}}
+  {{- $ratio := .ratio -}}
+  {{- $set := slice -}}
+  {{- $last := false -}}
+  {{- range $w := $widths -}}
+    {{- if le $w $img.Width -}}
+      {{- $r := false -}}
+      {{- if $ratio -}}
+        {{- $p := split $ratio ":" -}}
+        {{- $h := div (mul $w (int (index $p 1))) (int (index $p 0)) -}}
+        {{- $r = $img.Fill (printf "%dx%d webp Smart" $w $h) -}}
+      {{- else -}}
+        {{- $r = $img.Resize (printf "%dx webp" $w) -}}
+      {{- end -}}
+      {{- $set = $set | append (printf "%s %dw" $r.RelPermalink $r.Width) -}}
+      {{- $last = $r -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $last -}}
+    {{- $last = $img.Process "webp" -}}
+    {{- $set = slice (printf "%s %dw" $last.RelPermalink $last.Width) -}}
+  {{- end -}}
+  {{- printf `<img src="%s" srcset="%s" sizes="%s" width="%d" height="%d" %s>` $last.RelPermalink (delimit $set ", ") (.sizes | default "100vw") $last.Width $last.Height (delimit $attrs " ") | safeHTML -}}
+{{- end -}}

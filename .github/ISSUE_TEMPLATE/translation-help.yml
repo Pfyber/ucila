@@ -1,0 +1,25 @@
+name: 🌍 Pomoč pri prevodu / Pomoć sa prevodom / Translation help
+description: Prevedi učilo ali popravi prevod. / Translate an aid or fix a translation.
+title: "[Prevod] "
+labels: ["translation"]
+body:
+  - type: input
+    id: aid
+    attributes:
+      label: Učilo (povezava) / Učilo (link) / Aid (link)
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Jezik / Language
+      options: [Slovenščina, Srpski, English]
+    validations:
+      required: true
+  - type: textarea
+    id: translation
+    attributes:
+      label: Prevod ali popravek / Prevod ili ispravka / Translation or correction
+      description: Prilepi besedilo; v repozitorij ga dodamo mi. / Paste the text; we'll add it to the repo.
+    validations:
+      required: true

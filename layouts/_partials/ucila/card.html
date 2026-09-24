@@ -1,0 +1,35 @@
+{{- /* One aid as a Hextra card, with data-* attributes for the catalog filters. */ -}}
+{{- $p := . -}}
+{{- $src := partial "ucila/source.html" $p -}}
+{{- $img := dict "url" "" "w" "" "h" "" -}}
+{{- with $src.Resources.Get ($p.Params.cover | default "cover.jpg") -}}
+  {{- if eq .MediaType.SubType "svg" -}}
+    {{- $img = dict "url" .RelPermalink "w" "" "h" "" -}}
+  {{- else -}}
+    {{- $t := .Fill "600x450 webp Smart" -}}
+    {{- $img = dict "url" $t.RelPermalink "w" $t.Width "h" $t.Height -}}
+  {{- end -}}
+{{- end -}}
+{{- $bits := slice -}}
+{{- with $p.Params.subject }}{{ $l := slice }}{{ range . }}{{ $l = $l | append (partial "ucila/label.html" .) }}{{ end }}{{ $bits = $bits | append (delimit $l ", ") }}{{ end -}}
+{{- with $p.Params.age }}{{ $l := slice }}{{ range . }}{{ $l = $l | append (partial "ucila/term-label.html" (dict "taxonomy" "age" "key" .)) }}{{ end }}{{ $bits = $bits | append (delimit $l ", ") }}{{ end -}}
+{{- with $p.Params.time }}{{ $bits = $bits | append (printf "⏱ %s" .) }}{{ end -}}
+{{- $diff := $p.Params.difficulty | default "" -}}
+{{- $colors := dict "easy" "green" "medium" "amber" "hard" "red" -}}
+<div class="u-card"
+  data-subject="{{ delimit ($p.Params.subject | default slice) " " }}"
+  data-age="{{ delimit ($p.Params.age | default slice) " " }}"
+  data-machine="{{ delimit ($p.Params.machine | default slice) " " }}"
+  data-difficulty="{{ $diff }}">
+  {{- partial "shortcodes/card.html" (dict
+    "link" $p.RelPermalink
+    "title" $p.Title
+    "subtitle" (delimit $bits " · ")
+    "image" $img.url
+    "width" $img.w
+    "height" $img.h
+    "alt" ($p.Params.cover_alt | default "")
+    "tag" (cond (ne $diff "") (partial "ucila/label.html" $diff) "")
+    "tagColor" (index $colors $diff | default "gray")
+  ) -}}
+</div>
