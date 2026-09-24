@@ -1,7 +1,7 @@
 # --- Učila UI -------------------------------------------------------------
 # Hextra's own English strings are merged in from the theme.
 hero_title: "Open library of teaching aids"
-hero_subtitle: "Simple classroom aids that teachers make themselves. Each one has instructions, a materials list and the files to make it. Everything is free to use, change and share."
+hero_subtitle: "Open-source didactic tools and teaching aids. Each one has instructions, a materials list and the files to make it. Everything is free to use, change and share."
 hero_cta: "Browse aids"
 hero_cta_contribute: "Add your aid"
 latest: "Newest aids"
