@@ -1,0 +1,50 @@
+PREDLOGA ZA UČILO
+=================
+
+1. Odpri datoteko v svojem jeziku (index.sl.md, index.sr.md ali index.en.md)
+   s Beležnico ali katerim koli urejevalnikom besedila. Drugi dve lahko izbrišeš.
+2. Izpolni polja med narekovaji in napiši opis. Opombe za znakom # ti pomagajo.
+3. V to mapo dodaj:
+   - cover.jpg: glavno fotografijo učila
+   - korak-1.jpg, korak-2.jpg ...: fotografije korakov (neobvezno)
+   - datoteke za izdelavo: SVG ali DXF za laser, STL za 3D tisk, PDF, kodo ...
+4. Mapo zapakiraj v .zip (desni klik > Pošlji v > Stisnjena mapa).
+5. Odpri https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml
+   in .zip povleci v polje "Datoteke". Potrebuješ brezplačen račun na GitHubu.
+
+Ni treba, da je vse popolno. Pomagamo ti urediti stran.
+
+
+ŠABLON ZA UČILO (srpski)
+========================
+
+1. Otvori fajl na svom jeziku (index.sr.md, index.sl.md ili index.en.md)
+   u Notepadu ili bilo kom uređivaču teksta. Ostala dva možeš da obrišeš.
+2. Popuni polja između navodnika i napiši opis. Napomene posle znaka # ti pomažu.
+3. U ovaj folder dodaj:
+   - cover.jpg: glavnu fotografiju učila
+   - korak-1.jpg, korak-2.jpg ...: fotografije koraka (opciono)
+   - fajlove za izradu: SVG ili DXF za laser, STL za 3D štampu, PDF, kôd ...
+4. Folder spakuj u .zip (desni klik > Send to > Compressed folder).
+5. Otvori https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml
+   i prevuci .zip u polje "Fajlovi". Potreban ti je besplatan GitHub nalog.
+
+Ne mora sve da bude savršeno. Pomoći ćemo ti da središ stranicu.
+
+
+AID TEMPLATE (English)
+======================
+
+1. Open the file in your language (index.en.md, index.sl.md or index.sr.md)
+   in Notepad or any text editor. You can delete the other two.
+2. Fill in the fields between the quotes and write the description.
+   The notes after # explain each field.
+3. Add to this folder:
+   - cover.jpg: the main photo of the aid
+   - korak-1.jpg, korak-2.jpg ...: step photos (optional)
+   - files to make it: SVG or DXF for laser, STL for 3D print, PDF, code ...
+4. Zip the folder (right-click > Send to > Compressed folder).
+5. Open https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml
+   and drag the .zip into the "Files" box. You need a free GitHub account.
+
+It doesn't have to be perfect. We'll help you finish the page.

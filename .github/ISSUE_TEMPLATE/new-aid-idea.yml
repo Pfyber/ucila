@@ -6,9 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Hvala! Ni ti treba znati Gita – opiši idejo, pa ti pomagamo pripraviti stran.
-        Hvala! Ne moraš da znaš Git – opiši ideju, a mi ćemo pomoći.
-        Thanks! No Git needed – describe the idea and we'll help turn it into a page.
+        Izpolnjeno predlogo (.zip) povleci v polje spodaj. Predloga: https://pfyber.github.io/ucila/predloga-ucila.zip
+        Popunjen šablon (.zip) prevuci u polje ispod.
+        Drag your filled-in template (.zip) into the box below.
   - type: input
     id: name
     attributes:
@@ -19,9 +19,7 @@ body:
     id: lesson
     attributes:
       label: Kaj učenci s tem počnejo? / Šta učenici rade? / What do pupils do with it?
-      description: Predmet, starost, kratka dejavnost. / Subject, age, a short activity.
-    validations:
-      required: true
+      description: Če si poslal/a predlogo, lahko pustiš prazno. / Leave empty if you sent the template.
   - type: dropdown
     id: machine
     attributes:
@@ -31,5 +29,5 @@ body:
   - type: textarea
     id: files
     attributes:
-      label: Datoteke in fotografije / Fajlovi i fotografije / Files and photos
-      description: Povleci sem ali prilepi povezavo. / Drag files here or paste a link.
+      label: Datoteke / Fajlovi / Files
+      description: Povleci sem .zip s predlogo ali posamezne datoteke. / Drag the template .zip or single files here.

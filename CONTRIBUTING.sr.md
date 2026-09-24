@@ -1,12 +1,17 @@
 # Doprinesi Učilima
 
-Hvala! Svako podeljeno učilo nekome uštedi popodne rada. Ne mora da bude savršeno. Važno je da se pokazalo u tvom razredu.
+Hvala što deliš. Učilo ne mora da bude savršeno; dovoljno je da se pokazalo u razredu.
 
 *English: [CONTRIBUTING.md](CONTRIBUTING.md) · Slovenščina: [CONTRIBUTING.sl.md](CONTRIBUTING.sl.md)*
 
-## Ne znaš Git? Nema veze
+## Bez Gita: koristi šablon
 
-Otvori zahtev, a ostalo sredićemo mi:
+1. Preuzmi [`predloga-ucila.zip`](https://pfyber.github.io/ucila/predloga-ucila.zip) i raspakuj ga.
+2. U uređivaču teksta popuni `index.sr.md`.
+3. Dodaj `cover.jpg`, fotografije koraka i fajlove za izradu.
+4. Folder spakuj i priloži ga uz [zahtev za novo učilo](https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml).
+
+Ostali obrasci:
 
 - 💡 [Nova ideja za učilo](https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml)
 - 📸 [Napravio/la sam ovo](https://github.com/Pfyber/ucila/issues/new?template=i-built-this.yml)

@@ -1,11 +1,20 @@
 # Učila
 
-**An open library of DIY teaching aids, by teachers for teachers.**
-Every aid comes with a description, a classroom activity, a materials list, fabrication files (laser, 3D print, CNC, electronics) and step-by-step build instructions, in Slovenian, Serbian (Latin) and English.
+An open library of teaching aids that teachers make themselves. Each aid has a short description, a classroom activity, a materials list, the files to make it (laser, 3D print, CNC, electronics) and build steps. Available in Slovenian, Serbian (Latin) and English.
 
 🌐 https://pfyber.github.io/ucila/
 
 > Slovenščina: [CONTRIBUTING.sl.md](CONTRIBUTING.sl.md) · Srpski: [CONTRIBUTING.sr.md](CONTRIBUTING.sr.md) · English: [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## Add an aid without Git
+
+Download [`predloga-ucila.zip`](https://pfyber.github.io/ucila/predloga-ucila.zip), fill in one of the `index.*.md` files, add photos and files, zip the folder and attach it to a [new aid issue](https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml). A maintainer turns it into a page.
+
+The template source is in `predloga/moje-ucilo/`. CI zips it into `static/predloga-ucila.zip` on every deploy; after editing it locally, re-zip with:
+
+```bash
+cd predloga && zip -qr ../static/predloga-ucila.zip moje-ucilo
+```
 
 ## Run it locally
 
@@ -19,7 +28,7 @@ hugo server
 
 Open http://localhost:1313/ucila/. For a production build: `hugo --gc --minify`.
 
-## Add an aid
+## Add an aid with Git
 
 ```bash
 hugo new ucila/my-aid

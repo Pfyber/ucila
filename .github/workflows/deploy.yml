@@ -55,6 +55,11 @@ jobs:
           key: hugo-${{ hashFiles('go.sum') }}-${{ github.run_id }}
           restore-keys: hugo-${{ hashFiles('go.sum') }}-
 
+      - name: Pack the aid template
+        run: |
+          rm -f static/predloga-ucila.zip
+          (cd predloga && zip -qr ../static/predloga-ucila.zip moje-ucilo)
+
       - name: Build
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache

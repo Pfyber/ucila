@@ -7,7 +7,7 @@
         <h1>{{ partial "utils/title.html" . }}</h1>
       </header>
       {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
-      <ul class="u-chips u-chips--big not-prose">
+      <ul class="u-chips not-prose">
         {{- range .Data.Terms.Alphabetical -}}
           <li>
             <a class="u-chip" href="{{ .Page.RelPermalink }}">

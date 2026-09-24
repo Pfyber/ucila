@@ -1,12 +1,17 @@
 # Contributing to Učila
 
-Thank you! Every aid you share saves another teacher an afternoon. It doesn't need to be perfect. It only needs to have worked in your classroom.
+Thanks for sharing. An aid doesn't need to be perfect; it only needs to have worked in your classroom.
 
 *Slovenščina: [CONTRIBUTING.sl.md](CONTRIBUTING.sl.md) · Srpski: [CONTRIBUTING.sr.md](CONTRIBUTING.sr.md)*
 
-## No Git? No problem
+## No Git? Use the template
 
-Open an issue and we'll do the rest:
+1. Download [`predloga-ucila.zip`](https://pfyber.github.io/ucila/predloga-ucila.zip) and unzip it.
+2. Fill in `index.en.md` (or the Slovenian/Serbian file) in any text editor.
+3. Add `cover.jpg`, step photos and the files to make it.
+4. Zip the folder and attach it to a [new aid issue](https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml).
+
+Other forms:
 
 - 💡 [New aid idea](https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml)
 - 📸 [I built this](https://github.com/Pfyber/ucila/issues/new?template=i-built-this.yml)

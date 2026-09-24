@@ -40,7 +40,7 @@ html.dark {
 /* ---------- buttons ---------- */
 .u-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-  min-height: 44px; padding: .55rem 1.1rem; border-radius: 999px;
+  min-height: 44px; padding: .55rem 1rem; border-radius: 6px;
   font-weight: 600; font-size: .95rem; line-height: 1.2; text-decoration: none;
   border: 1px solid transparent; cursor: pointer;
   transition: background-color .15s, border-color .15s, color .15s;
@@ -56,7 +56,7 @@ html.dark {
 .u-chips { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
 .u-chip {
   display: inline-flex; align-items: center; gap: .4rem;
-  min-height: 40px; padding: .4rem .9rem; border-radius: 999px;
+  min-height: 40px; padding: .4rem .8rem; border-radius: 6px;
   border: 1px solid var(--u-border); background: var(--u-surface); color: var(--u-text);
   font-size: .9rem; font-weight: 500; text-decoration: none; cursor: pointer;
   transition: background-color .15s, border-color .15s, color .15s;
@@ -64,8 +64,7 @@ html.dark {
 .u-chip:hover { border-color: var(--u-accent); }
 .u-chip[aria-pressed="true"] { background: var(--u-accent); border-color: var(--u-accent); color: var(--u-accent-ink); }
 .u-chip[aria-pressed="true"]::before { content: "✓"; font-weight: 700; }
-.u-chip__count { font-size: .75rem; padding: 0 .45rem; border-radius: 999px; background: var(--u-accent-soft); color: var(--u-text); }
-.u-chips--big .u-chip { min-height: 48px; padding: .6rem 1.1rem; font-size: 1rem; }
+.u-chip__count { font-size: .8rem; color: var(--u-muted); }
 
 /* ---------- card grid ---------- */
 .u-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); }
@@ -92,9 +91,11 @@ html.dark {
 @media (min-width: 64rem) { .u-filters { grid-template-columns: repeat(4, minmax(0, 1fr)); } .u-filter-bar { grid-column: 1 / -1; } }
 
 /* ---------- home ---------- */
-.u-hero { padding: 3rem 0 2rem; display: grid; gap: 1rem; max-width: 50rem; }
-.u-hero .u-lead { font-size: 1.25rem; }
+.u-hero { padding: 2.5rem 0 1rem; display: grid; gap: .75rem; max-width: 46rem; }
+.u-hero h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 700; line-height: 1.2; }
 .u-hero .u-actions { margin-top: .5rem; }
+.u-share { padding-top: 2rem; border-top: 1px solid var(--u-border); max-width: 46rem; }
+.u-share p { color: var(--u-muted); margin-bottom: 1rem; }
 .u-block { margin-top: 3rem; }
 .u-block h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -.01em; margin-bottom: 1rem; }
 .u-block__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -102,10 +103,6 @@ html.dark {
 .u-block__head a:hover { text-decoration: underline; }
 .u-browse { display: grid; gap: 0 2rem; }
 @media (min-width: 56rem) { .u-browse { grid-template-columns: 1fr 1fr; } }
-.u-how { display: grid; gap: .75rem; list-style: none; margin: 0; padding: 0; counter-reset: how; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
-.u-how li { counter-increment: how; display: flex; flex-direction: column; gap: .6rem; padding: 1.1rem; border-radius: var(--u-radius); background: var(--u-surface); border: 1px solid var(--u-border); font-weight: 600; }
-.u-how li::before { content: counter(how); font-size: .8rem; font-weight: 700; color: var(--u-muted); }
-.u-how__icon { color: var(--u-accent); }
 
 /* ---------- single aid ---------- */
 .u-aid-head h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; margin-top: 1.25rem; }
@@ -133,7 +130,7 @@ html.dark {
 .u-figure { margin: 1rem 0; }
 .u-figure img { width: 100%; height: auto; border-radius: .6rem; }
 .u-figure figcaption { font-size: .9rem; color: var(--u-muted); margin-top: .4rem; }
-.u-made-one { display: grid; gap: 1rem; margin-top: 3rem; padding: 1.5rem; border-radius: var(--u-radius); background: var(--u-accent-soft); border: 1px solid var(--u-border); }
+.u-made-one { display: grid; gap: 1rem; margin-top: 3rem; padding: 1.5rem; border-radius: var(--u-radius); border: 1px solid var(--u-border); }
 .u-made-one h2 { font-size: 1.35rem; font-weight: 700; margin: 0 0 .35rem; }
 .u-made-one p { margin: 0; color: var(--u-muted); }
 @media (min-width: 48rem) { .u-made-one { grid-template-columns: 1fr auto; align-items: center; } }
@@ -147,3 +144,11 @@ html.dark {
 .u-footer a { display: inline-flex; align-items: center; gap: .35rem; color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) { .u-btn, .u-chip { transition: none; } }
+
+/* keep cards flat */
+.u-card .hextra-card { box-shadow: none; }
+
+/* small screens: language switcher shows only its icon so the title fits */
+@media (max-width: 40rem) {
+  .hextra-nav-container .hextra-language-switcher span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+}

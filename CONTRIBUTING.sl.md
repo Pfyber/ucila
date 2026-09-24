@@ -1,12 +1,17 @@
 # Prispevaj k Učilom
 
-Hvala! Vsako deljeno učilo nekomu prihrani popoldne dela. Ni treba, da je popolno. Pomembno je, da se je v tvojem razredu obneslo.
+Hvala, da deliš. Učilo ni nujno popolno; dovolj je, da se je v razredu obneslo.
 
 *English: [CONTRIBUTING.md](CONTRIBUTING.md) · Srpski: [CONTRIBUTING.sr.md](CONTRIBUTING.sr.md)*
 
-## Ne znaš Gita? Nič hudega
+## Brez Gita: uporabi predlogo
 
-Odpri zahtevek, vse drugo uredimo mi:
+1. Prenesi [`predloga-ucila.zip`](https://pfyber.github.io/ucila/predloga-ucila.zip) in jo razpakiraj.
+2. V urejevalniku besedila izpolni `index.sl.md`.
+3. Dodaj `cover.jpg`, fotografije korakov in datoteke za izdelavo.
+4. Mapo zapakiraj in jo pripni k [zahtevku za novo učilo](https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml).
+
+Drugi obrazci:
 
 - 💡 [Nova ideja za učilo](https://github.com/Pfyber/ucila/issues/new?template=new-aid-idea.yml)
 - 📸 [Izdelal/a sem to](https://github.com/Pfyber/ucila/issues/new?template=i-built-this.yml)

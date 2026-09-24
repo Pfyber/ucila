@@ -7,15 +7,15 @@
     <main id="content" class="u-page u-home hx:w-full hx:min-w-0 hx:px-6 hx:pb-12 hx:md:px-12">
 
       <section class="u-hero">
-        <h1 class="hx:text-4xl hx:font-bold hx:leading-tight hx:tracking-tighter hx:md:text-5xl hx:py-2 hx:bg-clip-text hx:text-transparent hx:bg-gradient-to-r hx:from-gray-900 hx:to-gray-600 hx:dark:from-gray-100 hx:dark:to-gray-400">{{ i18n "hero_title" }}</h1>
+        <h1>{{ i18n "hero_title" }}</h1>
         <p class="u-lead">{{ i18n "hero_subtitle" }}</p>
         <div class="u-actions">
-          {{ with $catalog }}<a class="u-btn u-btn--primary u-btn--lg" href="{{ .RelPermalink }}">{{ i18n "hero_cta" }}</a>{{ end }}
-          {{ with $contribute }}<a class="u-btn u-btn--ghost u-btn--lg" href="{{ .RelPermalink }}">{{ i18n "hero_cta_contribute" }}</a>{{ end }}
+          {{ with $catalog }}<a class="u-btn u-btn--primary" href="{{ .RelPermalink }}">{{ i18n "hero_cta" }}</a>{{ end }}
+          {{ with $contribute }}<a class="u-btn u-btn--ghost" href="{{ .RelPermalink }}">{{ i18n "hero_cta_contribute" }}</a>{{ end }}
         </div>
       </section>
 
-      {{ with .Content }}<div class="content u-home-intro">{{ . }}</div>{{ end }}
+      {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
       {{- with $aids -}}
         <section class="u-block" aria-labelledby="latest">
@@ -27,22 +27,17 @@
         </section>
       {{- end -}}
 
-      {{- $icons := dict
-        "math" "calculator" "physics" "lightning-bolt" "biology" "sparkles" "chemistry" "beaker" "cs" "chip" "languages" "translate"
-        "laser" "scissors" "3d-print" "cube" "cnc" "cog" "hand-tools" "hand" "electronics" "light-bulb"
-      -}}
       <div class="u-browse">
         {{- range slice (slice "subject" "browse_by_subject") (slice "machine" "browse_by_machine") -}}
           {{- $tax := index . 0 }}{{ $heading := index . 1 -}}
           {{- with index site.Taxonomies $tax -}}
             <section class="u-block" aria-labelledby="browse-{{ $tax }}">
               <h2 id="browse-{{ $tax }}">{{ i18n $heading }}</h2>
-              <ul class="u-chips u-chips--big not-prose">
+              <ul class="u-chips not-prose">
                 {{- range $key, $pages := . -}}
                   <li>
                     <a class="u-chip" href="{{ with $catalog }}{{ .RelPermalink }}{{ end }}?{{ $tax }}={{ $key | urlquery }}">
-                      {{- with index $icons $key }}{{ partial "utils/icon.html" (dict "name" . "attributes" `height=18 aria-hidden="true"`) }}{{ end -}}
-                      <span>{{ partial "ucila/label.html" $key }}</span>
+                      {{- partial "ucila/label.html" $key -}}
                       <span class="u-chip__count">{{ len $pages }}</span>
                     </a>
                   </li>
@@ -53,16 +48,16 @@
         {{- end -}}
       </div>
 
-      <section class="u-block" aria-labelledby="how">
-        <h2 id="how">{{ i18n "how_it_works" }}</h2>
-        <ol class="u-how not-prose">
-          {{- range slice (slice "how_find" "search") (slice "how_download" "download") (slice "how_make" "puzzle") (slice "how_use" "academic-cap") (slice "how_share" "share") -}}
-            <li>
-              <span class="u-how__icon" aria-hidden="true">{{ partial "utils/icon.html" (dict "name" (index . 1) "attributes" "height=26") }}</span>
-              <span>{{ i18n (index . 0) }}</span>
-            </li>
-          {{- end -}}
-        </ol>
+      <section class="u-block u-share" aria-labelledby="share">
+        <h2 id="share">{{ i18n "share_title" }}</h2>
+        <p>{{ i18n "share_text" }}</p>
+        <div class="u-actions">
+          <a class="u-btn u-btn--primary" href="{{ "predloga-ucila.zip" | relURL }}" download>
+            {{- partial "utils/icon.html" (dict "name" "download" "attributes" `height=18 aria-hidden="true"`) -}}
+            <span>{{ i18n "template_download" }}</span>
+          </a>
+          {{ with $contribute }}<a class="u-btn u-btn--ghost" href="{{ .RelPermalink }}">{{ i18n "how_to_send" }}</a>{{ end }}
+        </div>
       </section>
     </main>
   </div>
